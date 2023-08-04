@@ -1,9 +1,8 @@
-import "./App.css";
-import Formulario from "../Components/Formulario"
-import { Component } from "react";
+import Formulario from "./Components/Formulario/Formulario"
+import React, { Component } from "react";
 import ListaTags from "./Components/ListaTags/ListaTags";
 
-class App extends Component() {
+class App extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -16,14 +15,12 @@ class App extends Component() {
   }
 
   handleClick(props) {
-    //let text = "<p id=p></p><p>search() searches a string for a value and returns the position of the first match:</p><h2>The search() Method</h2><h1>JavaScript Strings</h1>"
-    //getText();
-
+   
     async function fetch_url(url) {
       const response = await fetch(url);
 
-      response.ok; // => false
-      response.status; // => 404
+      //response.ok; // => false
+     // response.status; // => 404
 
       const text = await response.text();
       return text;
@@ -38,14 +35,13 @@ class App extends Component() {
     //console.log(text);
 
     const myArray = text.split("<");
-    let x = 0;
     let tags_aux = [];
     let tags = [];
     for (let x = 0; x < myArray.length; x++) {
       let aux1 = myArray[x].split(">")[0];
-      if (aux1[0] != "/") {
+      if (aux1[0] !== "/") {
         let aux2 = aux1.split(" ")[0];
-        if (aux2 != "") {
+        if (aux2 !== "") {
           tags_aux.push(aux2);
         }
       }
@@ -55,8 +51,8 @@ class App extends Component() {
     tags_aux.map((el) => conta_ocorrencia(el));
     function conta_ocorrencia(el) {
       //console.log(el);
-      let index = tags.findIndex((e1) => e1.nome == el); //findIndex retorna o index do valor encontrado
-      if (index == -1) {
+      let index = tags.findIndex((e1) => e1.nome === el); //findIndex retorna o index do valor encontrado
+      if (index === -1) {
         //se não existe grava em TAGS
         tags.push({ nome: el, qtd: 1 });
       } else {
