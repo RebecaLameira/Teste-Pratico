@@ -17,11 +17,10 @@ class App extends Component {
   handleClick(props) {
    
     async function fetch_url(url) {
-      const response = await fetch(url);
-
-      //response.ok; // => false
-     // response.status; // => 404
-
+      var server_url="https://teste-place.glitch.me/text_from_url?var=";
+     
+     const response = await fetch(server_url + url);
+  
       const text = await response.text();
       return text;
     }
