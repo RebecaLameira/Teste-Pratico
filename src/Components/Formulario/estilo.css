@@ -8,14 +8,14 @@
 }
 
 .custom-search-input input{
-    padding: 6px 400px;
+    padding: 6px 200px;
     border: 0;
     box-shadow: none;
     text-align: center;
 }
 
 .custom-search-input button{
-    margin: 2px 0 0 0;
+    margin: 2px 2px 0 0;
     background: #000;
     box-shadow: none;
     border: 0;

@@ -7,13 +7,46 @@ class App extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange_URL = this.handleChange_URL.bind(this);
-    this.state = { tags: [] , is_wait:false, url:"", text_url:"<>"};
+    this.handleClick_BD = this.handleClick_BD.bind(this);
+    this.state = { tags: [] , is_wait:false, url:"", text_url:"<>",sucesso:"Enviar para o Banco de Dados"};
   }
   
   handleChange_URL(event) {
     this.setState({url: event.target.value});
   }
   
+  handleClick_BD(props) {
+    
+    async function fetch_bd(tags) {  
+      var server_url="https://teste-place.glitch.me/salvar_bancodedados";
+      const response = await fetch(server_url,{
+        method: "POST",
+            headers: {
+              //"Content-Type": "application/json",
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        body: JSON.stringify(tags)
+      });
+      //response.ok;     // => false
+      //response.status; // => 404
+      const text = response.text();
+      return text;
+    }
+     
+    this.setState({sucesso: "Enviar para o Banco de Dados"});
+    const resposta =fetch_bd(this.state.tags).then(res => {
+      //console.log(res); // => 'Page not found'
+      this.setState({sucesso: "Sucesso!"});
+
+    });
+    //console.log(resposta);
+    if(resposta==="fulfilled"){
+      console.log("ok");
+    }else{
+      this.setState({sucesso: "Deu ruim!"});
+    }
+    
+  }
   handleClick(props) {
       
     
@@ -87,12 +120,15 @@ class App extends Component {
          handleChange_URL={this.handleChange_URL} 
          url={this.state.url}
          is_wait={this.state.is_wait}
+         onClick_BD={this.handleClick_BD.bind(this, this.state.teste)}
+         sucesso={this.state.sucesso}
         />
-        <ListaTags tags={this.state.tags} />
           <p>
-            Abaixo uma listagem das Tags feita em{" "}
+          Abaixo uma listagem das Tags feita em{" "}
           <a href={"https://react.dev/"}>React</a>.
+            
           </p>
+          <ListaTags tags={this.state.tags} />
       </div>
       
     );

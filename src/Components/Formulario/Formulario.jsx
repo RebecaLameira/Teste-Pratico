@@ -25,6 +25,7 @@ class Formulario extends Component {
                   />
                    <span class="input-group-btn"></span>
                    <button onClick={this.props.onClick} className="btn btn-info btn-lg" type="button">{this.props.is_wait?"Aguarde!":"Contar Tags"}</button>
+                   <button onClick={this.props.onClick_BD} className="btn btn-info btn-lg">{this.props.sucesso}</button>
                 </div>
             </div>
       </div>
