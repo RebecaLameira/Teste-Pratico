@@ -12,10 +12,10 @@ class ListaTags extends Component {
         <Tag qtd={el.qtd} tag={el.nome} />
       ));
       return (
-        <table>
-          <tr style={{ border: "1px solid blue" }}>
-            <td style={{ border: "1px solid blue" }}>TAG HTML</td>
-            <td style={{ border: "1px solid blue" }}>QUANTIDADE</td>
+        <table className="table">
+          <tr className="tr">
+            <td className="td">TAG HTML</td>
+            <td className="td"> QUANTIDADES</td>
           </tr>
           {listItems}
         </table>
